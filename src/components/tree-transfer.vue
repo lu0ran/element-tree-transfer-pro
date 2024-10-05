@@ -324,18 +324,23 @@ export default {
       );
     },
 
-    // 监视默认选中
-    defaultCheckedKeys(val) {
-      this.treeCheckKeys = val;
-      this.findItem(this.treeFromData);
-      if (this.isRadio && this.rightList.length > 0) {
-        //回显判断如果是单选，左侧树全部disable
-        this.setDisable(this.treeFromData);
-      } else {
-        //回显判断如果是多选，选择的disable
-        this.chooseDisable(this.treeCheckKeys, this.treeFromData);
-      }
-    },
+      // 监视默认选中
+      'defaultCheckedKeys':{
+        handler(val) {
+            console.log("defaultCheckedKeys", val);
+        this.treeCheckKeys = val;
+        this.findItem(this.treeFromData);
+        if (this.isRadio && this.rightList.length > 0) {
+          //回显判断如果是单选，左侧树全部disable
+          this.setDisable(this.treeFromData);
+        } else {
+          //回显判断如果是多选，选择的disable
+          this.chooseDisable(this.treeCheckKeys, this.treeFromData);
+        }
+        // console.log(this.rightList);
+        },
+        immediate: true
+      },
     // 监视默认展开
     defaultExpandedKeys: {
       handler(val) {
